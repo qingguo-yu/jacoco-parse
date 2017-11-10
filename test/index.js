@@ -30,4 +30,21 @@ describe( "parseFile", function ()
             done();
         } );
     } );
+    it( "should parse a file without branches", function ( done )
+    {
+        parse.parseFile( path.join( __dirname, "assets", "sample1.xml" ), function ( err, result )
+        {
+            assert(!err && result);
+            assert.equal( result.length, 3 );
+            assert.equal( result[ 0 ].functions.found, 1 );
+            assert.equal( result[ 0 ].functions.hit, 1 );
+            assert.equal( result[ 0 ].lines.found, 3 );
+            assert.equal( result[ 0 ].lines.hit, 3 );
+            assert.equal( result[ 0 ].functions.details[ 0 ].line, 12 );
+            assert.equal( result[ 0 ].functions.details[ 0 ].hit, 1 );
+            assert.equal( result[ 0 ].lines.details[ 0 ].line, 12 );
+            assert.equal( result[ 0 ].lines.details[ 0 ].hit, 2 );
+            done();
+        } );
+    } );
 } );
